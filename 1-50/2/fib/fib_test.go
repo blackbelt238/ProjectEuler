@@ -12,28 +12,68 @@ func TestFib(t *testing.T) {
 	}
 }
 
-// TestUpToLimit ensures UpToLimit is returning the correct slice of Fibonacci numbers
-func TestUpToLimit(t *testing.T) {
+func TestUpToMax(t *testing.T) {
 	fcor := []int{0, 1, 1, 2, 3, 5} // the desired slice
-	futl := UpToLimit(12)           // slice recieved from UptoLimit
+	futm := UpToMax(5)              // slice recieved from UptoLimit
 
-	for i := 0; i < len(futl); i++ {
-		if fcor[i] != futl[i] {
+	if len(fcor) != len(futm) {
+		t.Error("Lists are not the same length.\n")
+		t.Errorf("\tcorrect entries: %v", fcor)
+		t.Errorf("\trecieved entries: %v", futm)
+	}
+
+	for i := 0; i < len(futm); i++ {
+		if fcor[i] != futm[i] {
 			t.Error("Error retrieving entries whose sum does not exceed 12.\n")
 			t.Errorf("\tcorrect entries: %v", fcor)
-			t.Errorf("\tcorrect entries: %v", futl)
+			t.Errorf("\trecieved entries: %v", futm)
 		}
 	}
 
-	// test the smallest case
-	fcor = []int{0}
-	futl = UpToLimit(0)
+	// smallest case
+	fcor = []int{0, 1, 1} // the desired slice
+	futm = UpToMax(1)     // slice recieved from UptoLimit
 
-	for i := 0; i < len(futl); i++ {
-		if fcor[i] != futl[i] {
+	if len(fcor) != len(futm) {
+		t.Error("Lists are not the same length.\n")
+		t.Errorf("\tcorrect entries: %v", fcor)
+		t.Errorf("\trecieved entries: %v", futm)
+	}
+
+	for i := 0; i < len(futm); i++ {
+		if fcor[i] != futm[i] {
 			t.Error("Error retrieving entries whose sum does not exceed 12.\n")
 			t.Errorf("\tcorrect entries: %v", fcor)
-			t.Errorf("\tcorrect entries: %v", futl)
+			t.Errorf("\trecieved entries: %v", futm)
 		}
+	}
+}
+
+// TestSumEven replicates the desired behavior of main to ensure the proper result is being calculated
+func TestSumEven(t *testing.T) {
+	fnums := UpToMax(5) // [0, 1, 1, 2, 3, 5]
+
+	sumEven := 0 // sum of all even numbers in fnums
+	for _, num := range fnums {
+		if num%2 == 0 {
+			sumEven += num
+		}
+	}
+
+	if sumEven != 2 {
+		t.Errorf("The sum of even numbers should be 2, got %d", sumEven)
+	}
+
+	fnums = UpToMax(144) // [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144]
+
+	sumEven = 0 // sum of all even numbers in fnums
+	for _, num := range fnums {
+		if num%2 == 0 {
+			sumEven += num
+		}
+	}
+
+	if sumEven != 188 {
+		t.Errorf("The sum of even numbers should be 188, got %d", sumEven)
 	}
 }
