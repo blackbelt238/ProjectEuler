@@ -12,6 +12,7 @@ func TestFib(t *testing.T) {
 	}
 }
 
+// TestUpToMax ensures UpToMax is functioning as expected in a small case
 func TestUpToMax(t *testing.T) {
 	fcor := []int{0, 1, 1, 2, 3, 5} // the desired slice
 	futm := UpToMax(5)              // slice recieved from UptoLimit
@@ -29,10 +30,12 @@ func TestUpToMax(t *testing.T) {
 			t.Errorf("\trecieved entries: %v", futm)
 		}
 	}
+}
 
-	// smallest case
-	fcor = []int{0, 1, 1} // the desired slice
-	futm = UpToMax(1)     // slice recieved from UptoLimit
+// TestUpToMaxSmallestCase ensures UpToMax functions as expected in its' smallest case
+func TestUpToMaxSmallestCase(t *testing.T) {
+	fcor := []int{0, 1, 1} // the desired slice
+	futm := UpToMax(1)     // slice recieved from UptoLimit
 
 	if len(fcor) != len(futm) {
 		t.Error("Lists are not the same length.\n")
