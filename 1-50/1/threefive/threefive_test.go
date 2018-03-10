@@ -4,6 +4,7 @@ import (
 	"testing"
 )
 
+// TestThreeAndFiveBelow10 tests the ThreeAndFive function using Euler's sample input
 func TestThreeAndFiveBelow10(t *testing.T) {
 	val := ThreeAndFive(10)
 	if val != 23 {
