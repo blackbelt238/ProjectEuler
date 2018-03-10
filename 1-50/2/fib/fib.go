@@ -18,7 +18,7 @@ func UpToMax(max int) []int {
 	var next int
 	for next <= max {
 		next = fibl[len(fibl)-1] + fibl[len(fibl)-2] // calculate the next number to add
-		fibl = append(fibl, next)                    // add next to the list
+		fibl = append(fibl, next)
 	}
 
 	// return the constructed list without the final entry,
