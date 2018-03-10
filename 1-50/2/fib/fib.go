@@ -11,19 +11,17 @@ func Fib(n int) int {
 	}
 }
 
-// UpToLimit returns a list of all Fibonacci numbers whose sum does not exceed limit
-func UpToLimit(limit int) []int {
+// UpToMax returns a list of all Fibonacci numbers that do not exceed max
+func UpToMax(max int) []int {
 	fibl := []int{0, 1} // list of Fibonacci numbers
-	sum := 1            // sum of all numbers in fibl
 
 	var next int
-	for sum <= limit {
+	for next <= max {
 		next = fibl[len(fibl)-1] + fibl[len(fibl)-2] // calculate the next number to add
 		fibl = append(fibl, next)                    // add next to the list
-		sum += next                                  // update the sum
 	}
 
 	// return the constructed list without the final entry,
-	//   since it caused the sum to exceed the limit
-	return fibl[:len(fibl)-2]
+	//   since it exceeds the max
+	return fibl[:len(fibl)-1]
 }
