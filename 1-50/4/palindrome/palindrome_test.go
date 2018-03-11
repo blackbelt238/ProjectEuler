@@ -29,13 +29,16 @@ func TestIsPalindromic(t *testing.T) {
 
 // TestProducts ensures that Products is properly determining all palindromic products for a given number of digits
 func TestProducts(t *testing.T) {
-	lgst := 9009
-	pals := Products(2)
-	if pals == nil {
-		t.Errorf("palindromics cannot be nil.\n")
+	lgst := 9
+	pals := Products(1)
+	lgstrec := pals[len(pals)-1]
+	if lgstrec != lgst {
+		t.Errorf("largest palindrome in list should be %d, instead got %d\n", lgst, lgstrec)
 	}
 
-	lgstrec := pals[len(pals)-1]
+	lgst = 9009
+	pals = Products(2)
+	lgstrec = pals[len(pals)-1]
 	if lgstrec != lgst {
 		t.Errorf("largest palindrome in list should be %d, instead got %d\n", lgst, lgstrec)
 	}
