@@ -4,6 +4,20 @@ import (
 	"math"
 )
 
+// PrimeFactors returns all the prime factors for the given number
+func PrimeFactors(num int) []int {
+	primes := SieveOfEratosthenes(num) // all prime numbers up to num
+	var pfacs []int                    // list of prime factors for num
+
+	for _, prime := range primes {
+		if num%prime == 0 {
+			pfacs = append(pfacs, prime)
+		}
+	}
+
+	return pfacs
+}
+
 // SieveOfEratosthenes finds all prime numbers up to the given limit n
 func SieveOfEratosthenes(n int) []int {
 	// create the sieve, initialize all values to true
