@@ -2,6 +2,7 @@ package palindrome
 
 import (
 	"math"
+	"sort"
 	"strconv"
 )
 
@@ -32,6 +33,7 @@ func Products(ndigs int) []int {
 	var pals []int // palindromic numbers
 	var prod int   // product of 2 numbers
 
+	// calculate all applicable products and determine if they are palindromic
 	for i := int(math.Pow(float64(10), float64(ndigs-1))); i < int(math.Pow(float64(10), float64(ndigs))); i++ {
 		for j := int(math.Pow(float64(10), float64(ndigs-1))); j < int(math.Pow(float64(10), float64(ndigs))); j++ {
 			prod = i * j
@@ -41,6 +43,10 @@ func Products(ndigs int) []int {
 		}
 	}
 
+	// sort palindromes in ascending order
+	sort.Slice(pals, func(i, j int) bool {
+		return pals[i] < pals[j]
+	})
 	return pals
 }
 
