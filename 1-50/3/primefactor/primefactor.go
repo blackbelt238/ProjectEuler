@@ -6,8 +6,8 @@ import (
 
 // PrimeFactors returns all the prime factors for the given number
 func PrimeFactors(num int) []int {
-	primes := SieveOfEratosthenes(num) // all prime numbers up to num
-	var pfacs []int                    // list of prime factors for num
+	primes := SieveOfEratosthenes(int(math.Floor(math.Sqrt(float64(num))))) // all prime numbers up to floor(sqrt(num))
+	var pfacs []int                                                         // prime factors for num
 
 	for _, prime := range primes {
 		if num%prime == 0 {
