@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// IsPalindromic determines if the given value is a palindromic number
+// IsPalindromic determines if the given decimal value is a palindromic number
 func IsPalindromic(val int) bool {
 	vstr := strconv.FormatInt(int64(val), 10) // string representation of val
 	digs := make([]int, len(vstr))            // val's digits
