@@ -19,17 +19,39 @@ func Factors(num int) []int {
 	return pfacs
 }
 
-// SieveOfEratosthenes finds all prime numbers up to the given limit n
-func SieveOfEratosthenes(n int) []int {
+// GetPrime finds the n-th prime
+func GetPrime(n int) int {
+	var prime, num int
+	for i := 2; num < n; i++ {
+		if IsPrime(i) {
+			prime = i
+			num++
+		}
+	}
+	return prime
+}
+
+// IsPrime determines if the given number is prime
+func IsPrime(num int) bool {
+	for i := 2; i < num; i++ {
+		if num%i == 0 {
+			return false
+		}
+	}
+	return true
+}
+
+// SieveOfEratosthenes finds all prime numbers up to the given limit
+func SieveOfEratosthenes(limit int) []int {
 	// create the sieve, initialize all values to true
-	sieve := make([]bool, n+1)
+	sieve := make([]bool, limit+1)
 	var primes []int
 
 	// for each prime in the sieve
-	for num := 2; num <= int(math.Sqrt(float64(n))); num++ {
+	for num := 2; num <= int(math.Sqrt(float64(limit))); num++ {
 		if sieve[num] == false {
 			// mark off its' multiple as composite
-			for mult := num * num; mult <= n; mult += num {
+			for mult := num * num; mult <= limit; mult += num {
 				sieve[mult] = true
 			}
 		}
