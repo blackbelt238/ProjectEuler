@@ -1,4 +1,4 @@
-package primefactor
+package prime
 
 import (
 	"testing"
@@ -19,9 +19,9 @@ func TestLargestPrime(t *testing.T) {
 }
 
 // TestPrimeFactors ensures that PrimeFactors is returning all expected prime factors
-func TestPrimeFactors(t *testing.T) {
+func TestFactors(t *testing.T) {
 	facexp := []int{5, 7, 13, 29} // expected prime factors
-	facrec := PrimeFactors(13195) // recieved prime factors
+	facrec := Factors(13195)      // recieved prime factors
 
 	// immediately fail if the lists aren't the same length
 	if len(facexp) != len(facrec) {

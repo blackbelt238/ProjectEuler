@@ -1,11 +1,11 @@
-package primefactor
+package prime
 
 import (
 	"math"
 )
 
-// PrimeFactors returns all the prime factors for the given number
-func PrimeFactors(num int) []int {
+// Factors returns all the prime factors for the given number
+func Factors(num int) []int {
 	primes := SieveOfEratosthenes(int(math.Sqrt(float64(num)))) // all prime numbers up to sqrt(num)
 	var pfacs []int                                             // prime factors for num
 
