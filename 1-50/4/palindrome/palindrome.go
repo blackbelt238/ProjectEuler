@@ -7,23 +7,13 @@ import (
 )
 
 // IsPalindromic determines if the given decimal value is a palindromic number
-func IsPalindromic(val int) bool {
-	vstr := strconv.FormatInt(int64(val), 10) // string representation of val
-	digs := make([]int, len(vstr))            // val's digits
-	var digsr []int                           // val's digits in reverse order
-
-	// populate the list of val's digits and its' reverse
-	for i, dig := range vstr {
-		digs[i] = int(dig)
-	}
-	digsr = reverse(digs)
-
-	for i, j := 0, len(digs)-1; i <= j; i, j = i+1, j-1 {
-		if digs[i] != digsr[i] || digs[j] != digsr[j] {
+func IsPalindromic(val int, base int) bool {
+	vstr := strconv.FormatInt(int64(val), base) // string representation of val
+	for i, j := 0, len(vstr)-1; i <= j; i, j = i+1, j-1 {
+		if vstr[i] != vstr[j] {
 			return false
 		}
 	}
-
 	return true
 }
 
@@ -37,7 +27,7 @@ func Products(ndigs int) []int {
 	for i := int(math.Pow(float64(10), float64(ndigs-1))); i < int(math.Pow(float64(10), float64(ndigs))); i++ {
 		for j := int(math.Pow(float64(10), float64(ndigs-1))); j < int(math.Pow(float64(10), float64(ndigs))); j++ {
 			prod = i * j
-			if IsPalindromic(prod) {
+			if IsPalindromic(prod, 10) {
 				pals = append(pals, prod)
 			}
 		}
@@ -48,15 +38,4 @@ func Products(ndigs int) []int {
 		return pals[i] < pals[j]
 	})
 	return pals
-}
-
-// reverse returns a reflected version of s
-func reverse(s []int) []int {
-	sr := make([]int, len(s))
-
-	for i, j := 0, len(s)-1; i <= j; i, j = i+1, j-1 {
-		sr[i] = s[j]
-		sr[j] = s[i]
-	}
-	return sr
 }
