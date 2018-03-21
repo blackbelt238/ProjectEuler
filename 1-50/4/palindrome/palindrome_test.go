@@ -7,23 +7,45 @@ import (
 // TestIsPalindromic ensures the IsPalindromic function is properly identifying palindromic numbers
 func TestIsPalindromic(t *testing.T) {
 	val := 2
-	if !IsPalindromic(val) {
+	if !IsPalindromic(val, 10) {
 		t.Errorf("%d is palindromic, yet was determined not to be.\n", val)
 	}
 
 	val = 21
-	if IsPalindromic(val) {
+	if IsPalindromic(val, 10) {
 		t.Errorf("%d is not palindromic, yet was determined to be.\n", val)
 	}
 
 	val = 212
-	if !IsPalindromic(val) {
+	if !IsPalindromic(val, 10) {
 		t.Errorf("%d is palindromic, yet was determined not to be.\n", val)
 	}
 
 	val = 2112
-	if !IsPalindromic(val) {
+	if !IsPalindromic(val, 10) {
 		t.Errorf("%d is palindromic, yet was determined not to be.\n", val)
+	}
+
+	val = 21121
+	if IsPalindromic(val, 10) {
+		t.Errorf("%d is not palindromic, yet was determined to be.\n", val)
+	}
+}
+
+func TestIsPalindromicBinary(t *testing.T) {
+	val := 1
+	if !IsPalindromic(val, 2) {
+		t.Errorf("%b is palindromic, yet was determined not to be.\n", val)
+	}
+
+	val = 11 // 1011
+	if IsPalindromic(val, 2) {
+		t.Errorf("%b is not palindromic, yet was determined to be.\n", val)
+	}
+
+	val = 101 // 1100101
+	if IsPalindromic(val, 2) {
+		t.Errorf("%b is not palindromic, yet was determined to be.\n", val)
 	}
 }
 
@@ -41,16 +63,5 @@ func TestProducts(t *testing.T) {
 	lgstrec = pals[len(pals)-1]
 	if lgstrec != lgst {
 		t.Errorf("largest palindrome in list should be %d, instead got %d\n", lgst, lgstrec)
-	}
-}
-
-// TestReverse tests if reverse is properly reflecting the given int slice
-func TestReverse(t *testing.T) {
-	l := []int{1, 2, 3, 4, 5}     // list to reverse
-	lrexp := []int{5, 4, 3, 2, 1} // expected reverse
-	lrrec := reverse(l)
-
-	if len(lrexp) != len(lrrec) {
-		t.Errorf("Recieved reverse not the expected length\n")
 	}
 }
