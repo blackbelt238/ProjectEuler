@@ -1,8 +1,32 @@
 package seriesprod
 
 import (
+	"bufio"
+	"fmt"
+	"os"
 	"strconv"
 )
+
+// LargestSeriesProd uses the number in the given file to determine the largest product of n adjacent digits
+func LargestSeriesProd(fname string, numdigs int) int {
+	file, err := os.Open(fname)
+	if err != nil {
+		fmt.Printf("could not open %s: %v\n", fname, err)
+		return 0
+	}
+	defer file.Close()
+
+	adjque := make([]string, numdigs, numdigs) // adjacent digits
+	var gprod int                              // the greatest prod found so far
+
+	var numstr string              // the line of numbers to check against
+	line := bufio.NewScanner(file) // scanner for the file
+	for line.Scan() {              // for each line in the file, process the line
+		numstr = line.Text()
+		adjque, gprod = adjProcess(adjque, numstr, gprod)
+	}
+	return gprod
+}
 
 // adjCycle removes the digit at the front of the queue and adds the next one to the back
 func adjCycle(adjque []string, next string) []string {
