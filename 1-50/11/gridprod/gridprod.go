@@ -8,6 +8,28 @@ import (
 	"strings"
 )
 
+// LargestGridProd finds the biggest product of 4 adjacent numbers in the grid at the given location
+func LargestGridProd(fname string, dim int) int {
+	grid, err := makeGrid(fname, dim)
+	if err != nil {
+		fmt.Printf("Couldn't make a grid from %s: %v\n", fname, err)
+		return 0
+	}
+
+	var gprod int // the greatest product found so far
+
+	// for each square
+	for i := range grid {
+		for j := range grid[i] {
+			prod := calcProds(grid, i, j)
+			if prod > gprod {
+				gprod = prod
+			}
+		}
+	}
+	return gprod
+}
+
 // adjProd takes in a set of adjacent digits and returns their sum
 func adjProd(adj []int) int {
 	prod := 1
@@ -33,8 +55,14 @@ func calcProds(grid [][]int, y, x int) int {
 		gprod = p
 	}
 
-	// diagonal
+	// diagonal forward
 	p = calcDirection(grid, y, x, 1, 1)
+	if p > gprod {
+		gprod = p
+	}
+
+	// diagonal backward
+	p = calcDirection(grid, y, x, 1, -1)
 	if p > gprod {
 		gprod = p
 	}
@@ -44,22 +72,16 @@ func calcProds(grid [][]int, y, x int) int {
 
 // calcDirection
 func calcDirection(grid [][]int, y, x, ydir, xdir int) int {
-	// don't try a direction if it will result in
-	if ydir > 0 {
-		ydir = 1
-		if !(y+3 < len(grid)) {
+	// don't try a direction if it will be out of range
+	if ydir != 0 {
+		if !(y+ydir*3 < len(grid)) || !(y+ydir*3 > -1) {
 			return 0
 		}
-	} else {
-		ydir = 0
 	}
-	if xdir > 0 {
-		xdir = 1
-		if !(x+3 < len(grid)) {
+	if xdir != 0 {
+		if !(x+xdir*3 < len(grid[y])) || !(x+xdir*3 > -1) {
 			return 0
 		}
-	} else {
-		xdir = 0
 	}
 
 	adj := make([]int, 0, 4) // slice to hold adjacent digits
