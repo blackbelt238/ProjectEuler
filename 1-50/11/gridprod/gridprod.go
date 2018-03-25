@@ -30,7 +30,7 @@ func LargestGridProd(fname string, dim int) int {
 	return gprod
 }
 
-// adjProd takes in a set of adjacent digits and returns their sum
+// adjProd takes in a slice of adjacent digits and returns their product
 func adjProd(adj []int) int {
 	prod := 1
 	for _, dig := range adj {
@@ -70,9 +70,9 @@ func calcProds(grid [][]int, y, x int) int {
 	return gprod
 }
 
-// calcDirection
+// calcDirection returns the product of a single direction
 func calcDirection(grid [][]int, y, x, ydir, xdir int) int {
-	// don't try a direction if it will be out of range
+	// don't try to calculate if a direction will be out of range
 	if ydir != 0 {
 		if !(y+ydir*3 < len(grid)) || !(y+ydir*3 > -1) {
 			return 0
@@ -84,7 +84,8 @@ func calcDirection(grid [][]int, y, x, ydir, xdir int) int {
 		}
 	}
 
-	adj := make([]int, 0, 4) // slice to hold adjacent digits
+	// build the adjacent digits slice to pass to adjProd
+	adj := make([]int, 0, 4)
 	for i := 0; i < 4; i++ {
 		adj = append(adj, grid[y][x])
 		x += xdir
@@ -102,6 +103,7 @@ func makeGrid(fname string, dim int) ([][]int, error) {
 	}
 	defer file.Close()
 
+	// initialize the grid
 	grid := make([][]int, dim, dim)
 	for i := range grid {
 		grid[i] = make([]int, dim, dim)
