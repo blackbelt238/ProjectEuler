@@ -23,6 +23,6 @@ func TestNumFactors(t *testing.T) {
 
 	nf := tri.NumFactors()
 	if nf != 6 {
-		t.Errorf("triangle %d should have 6 divisors, got %d", tri.val, nf)
+		t.Errorf("triangle %d should have 6 divisors, got %d", tri.Val, nf)
 	}
 }

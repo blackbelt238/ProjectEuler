@@ -2,14 +2,14 @@ package triangular
 
 // Triangular is an object used to interact with triangular numbers
 type Triangular struct {
-	val int // the current triangular number
-	n   int // which triangular number val represents
+	Val int // the current triangular number
+	n   int // which triangular number Val represents
 }
 
 // CreateTriangular returns a new Triangular starting at the 1st trianular number
 func CreateTriangular() *Triangular {
 	return &Triangular{
-		val: 1,
+		Val: 1,
 		n:   1, // 1 is the 1st triangular number
 	}
 }
@@ -26,27 +26,27 @@ func (t *Triangular) Find(n int) int {
 	for t.n != n {
 		adv()
 	}
-	return t.val
+	return t.Val
 }
 
-// Prev determines the previous triangular below val
+// Prev determines the previous triangular below Val
 func (t *Triangular) Prev() {
-	t.val -= t.n
+	t.Val -= t.n
 	t.n--
 }
 
-// Next determines the next triangular above val
+// Next determines the next triangular above Val
 func (t *Triangular) Next() {
 	t.n++
-	t.val += t.n
+	t.Val += t.n
 }
 
 // NumFactors determines how many factors the current triangular has
 func (t *Triangular) NumFactors() int {
 	numfacs := 0
 
-	for i := 1; i <= t.val; i++ {
-		if t.val%i == 0 {
+	for i := 1; i <= t.Val; i++ {
+		if t.Val%i == 0 {
 			numfacs++
 		}
 	}
