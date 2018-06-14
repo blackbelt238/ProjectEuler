@@ -16,3 +16,13 @@ func TestFind(t *testing.T) {
 		t.Errorf("finding the 3rd triangular number yielded %d, should be 6", f)
 	}
 }
+
+func TestNumFactors(t *testing.T) {
+	tri := CreateTriangular()
+	tri.Find(7)
+
+	nf := tri.NumFactors()
+	if nf != 6 {
+		t.Errorf("triangle %d should have 6 divisors, got %d", tri.val, nf)
+	}
+}
