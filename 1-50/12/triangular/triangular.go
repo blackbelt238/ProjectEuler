@@ -1,5 +1,9 @@
 package triangular
 
+import (
+	prime "ProjectEuler/1-50/3/prime"
+)
+
 // Triangular is an object used to interact with triangular numbers
 type Triangular struct {
 	val int // the current triangular number
@@ -41,13 +45,13 @@ func (t *Triangular) Next() {
 
 // NumFactors determines how many factors the current triangular has
 func (t *Triangular) NumFactors() int {
-	numfacs := 0
+	pfacs := prime.Factorize(t.val)
+	numfacs := 1
 
-	for i := 1; i <= t.val; i++ {
-		if t.val%i == 0 {
-			numfacs++
-		}
+	for _, v := range pfacs {
+		numfacs *= v + 1
 	}
+
 	return numfacs
 }
 
