@@ -40,3 +40,15 @@ func (t *Triangular) Next() {
 	t.n++
 	t.val += t.n
 }
+
+// NumFactors determines how many factors the current triangular has
+func (t *Triangular) NumFactors() int {
+	numfacs := 0
+
+	for i := 1; i <= t.val; i++ {
+		if t.val%i == 0 {
+			numfacs++
+		}
+	}
+	return numfacs
+}
