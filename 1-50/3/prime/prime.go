@@ -4,6 +4,25 @@ import (
 	"math"
 )
 
+// Factorize finds the prime factorization of a number
+func Factorize(num int) map[int]int {
+	pfac := make(map[int]int)
+	primes := SieveOfEratosthenes(int(math.Sqrt(float64(num))))
+
+	for !IsPrime(num) {
+		for _, prime := range primes {
+			if num%prime == 0 {
+				pfac[prime]++
+				num = num / prime
+				break
+			}
+		}
+	}
+	pfac[num]++
+
+	return pfac
+}
+
 // Factors returns all the prime factors for the given number
 func Factors(num int) []int {
 	primes := SieveOfEratosthenes(int(math.Sqrt(float64(num)))) // all prime numbers up to sqrt(num)

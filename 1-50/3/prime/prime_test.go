@@ -18,6 +18,20 @@ func TestLargestPrime(t *testing.T) {
 	}
 }
 
+func TestFactorize(t *testing.T) {
+	pfacs := Factorize(147)
+	exp := map[int]int{3: 1, 7: 2}
+
+	if len(pfacs) != 2 {
+		t.Errorf("calc: %v\n exp: %v", pfacs, exp)
+	}
+	for k, v := range pfacs {
+		if exp[k] != v {
+			t.Errorf("calc: %v\n exp: %v", pfacs, exp)
+		}
+	}
+}
+
 // TestPrimeFactors ensures that PrimeFactors is returning all expected prime factors
 func TestFactors(t *testing.T) {
 	facexp := []int{5, 7, 13, 29} // expected prime factors
