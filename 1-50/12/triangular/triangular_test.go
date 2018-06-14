@@ -6,14 +6,15 @@ import (
 
 func TestFind(t *testing.T) {
 	tri := CreateTriangular()
-	f := tri.Find(7)
-	if f != 28 {
-		t.Errorf("finding the 7th triangular number yielded %d, should be 28", f)
+	tri.Find(7)
+
+	if tri.Val() != 28 {
+		t.Errorf("finding the 7th triangular number yielded %d, should be 28", tri.Val())
 	}
 
-	f = tri.Find(3)
-	if f != 6 {
-		t.Errorf("finding the 3rd triangular number yielded %d, should be 6", f)
+	tri.Find(tri.N() - 4)
+	if tri.Val() != 6 {
+		t.Errorf("finding the 3rd triangular number yielded %d, should be 6", tri.Val())
 	}
 }
 
@@ -23,6 +24,6 @@ func TestNumFactors(t *testing.T) {
 
 	nf := tri.NumFactors()
 	if nf != 6 {
-		t.Errorf("triangle %d should have 6 divisors, got %d", tri.Val, nf)
+		t.Errorf("triangle %d should have 6 divisors, got %d", tri.Val(), nf)
 	}
 }
