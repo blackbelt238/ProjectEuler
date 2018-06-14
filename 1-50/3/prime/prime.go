@@ -23,21 +23,6 @@ func Factorize(num int) map[int]int {
 	return pfac
 }
 
-// Factors returns all the prime factors for the given number
-func Factors(num int) []int {
-	primes := SieveOfEratosthenes(int(math.Sqrt(float64(num)))) // all prime numbers up to sqrt(num)
-	var pfacs []int                                             // prime factors for num
-
-	for _, prime := range primes {
-		// if the prime is a prime factor
-		if num%prime == 0 {
-			pfacs = append(pfacs, prime)
-		}
-	}
-
-	return pfacs
-}
-
 // GetPrime finds the n-th prime
 func GetPrime(n int) int {
 	var prime, num int
