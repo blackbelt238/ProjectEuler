@@ -32,26 +32,6 @@ func TestFactorize(t *testing.T) {
 	}
 }
 
-// TestPrimeFactors ensures that PrimeFactors is returning all expected prime factors
-func TestFactors(t *testing.T) {
-	facexp := []int{5, 7, 13, 29} // expected prime factors
-	facrec := Factors(13195)      // recieved prime factors
-
-	// immediately fail if the lists aren't the same length
-	if len(facexp) != len(facrec) {
-		t.Errorf("Length of recieved list does not match that which is expected:\n")
-		t.Errorf("\texpected: %v\n", facexp)
-		t.Errorf("\trecieved: %v\n", facrec)
-	}
-
-	// check equality of all prime factors
-	for i := range facexp {
-		if facexp[i] != facrec[i] {
-			t.Errorf("Should have recieved %d, instead got %d\n", facexp[i], facrec[i])
-		}
-	}
-}
-
 // TestGetPrime ensures that GetPrime can find the n-th prime
 func TestGetPrime(t *testing.T) {
 	six := GetPrime(6)

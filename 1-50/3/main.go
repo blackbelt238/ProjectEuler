@@ -7,8 +7,15 @@ import (
 
 func main() {
 	num := 600851475143
-	pfacs := prime.Factors(num)
+	pfacs := prime.Factorize(num) // perform prime factorization on num
 
-	// find the largest prime factor returned
-	fmt.Println(pfacs[len(pfacs)-1])
+	// determine the largest of the prime factors
+	lfac := 0
+	for k := range pfacs {
+		if k > lfac {
+			lfac = k
+		}
+	}
+
+	fmt.Println(lfac)
 }
