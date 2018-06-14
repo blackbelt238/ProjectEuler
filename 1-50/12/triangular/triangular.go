@@ -33,6 +33,7 @@ func (t *Triangular) Find(n int) int {
 	return t.val
 }
 
+// N is a getter for n
 func (t *Triangular) N() int {
 	return t.n
 }
@@ -61,6 +62,7 @@ func (t *Triangular) Prev() {
 	t.n--
 }
 
+// Val is a getter for val
 func (t *Triangular) Val() int {
 	return t.val
 }
