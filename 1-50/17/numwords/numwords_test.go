@@ -45,7 +45,7 @@ func TestWord(t *testing.T) {
 
 	num = 1582
 	word = Word(num)
-	exp = "one thousand, five hundred and eighty-two"
+	exp = "one thousand five hundred and eighty-two"
 	if word != exp {
 		t.Errorf("%d's word is %s, not %s", num, exp, word)
 	}
