@@ -63,7 +63,7 @@ func TestLongMult(t *testing.T) {
 	exp := "6"
 
 	if res != exp {
-		t.Errorf("incorrect sum of %s and %s calculated: got %s, expected %s", n1, n2, res, exp)
+		t.Errorf("incorrect product of %s and %s calculated: got %s, expected %s", n1, n2, res, exp)
 	}
 
 	n1, n2 = "10", "20"
@@ -71,7 +71,7 @@ func TestLongMult(t *testing.T) {
 	exp = "200"
 
 	if res != exp {
-		t.Errorf("incorrect sum of %s and %s calculated: got %s, expected %s", n1, n2, res, exp)
+		t.Errorf("incorrect product of %s and %s calculated: got %s, expected %s", n1, n2, res, exp)
 	}
 
 	n1, n2 = "612", "24"
@@ -79,7 +79,7 @@ func TestLongMult(t *testing.T) {
 	exp = "14688"
 
 	if res != exp {
-		t.Errorf("incorrect sum of %s and %s calculated: got %s, expected %s", n1, n2, res, exp)
+		t.Errorf("incorrect product of %s and %s calculated: got %s, expected %s", n1, n2, res, exp)
 	}
 
 	n1, n2 = "423", "211"
@@ -87,7 +87,7 @@ func TestLongMult(t *testing.T) {
 	exp = "89253"
 
 	if res != exp {
-		t.Errorf("incorrect sum of %s and %s calculated: got %s, expected %s", n1, n2, res, exp)
+		t.Errorf("incorrect product of %s and %s calculated: got %s, expected %s", n1, n2, res, exp)
 	}
 
 	n1, n2 = "674", "220002"
@@ -95,6 +95,6 @@ func TestLongMult(t *testing.T) {
 	exp = "148281348"
 
 	if res != exp {
-		t.Errorf("incorrect sum of %s and %s calculated: got %s, expected %s", n1, n2, res, exp)
+		t.Errorf("incorrect product of %s and %s calculated: got %s, expected %s", n1, n2, res, exp)
 	}
 }
