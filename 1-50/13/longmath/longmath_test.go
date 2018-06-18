@@ -56,3 +56,29 @@ func TestLongAdd(t *testing.T) {
 		t.Errorf("incorrect sum of %s and %s calculated: got %s, expected %s", n1, n2, res, exp)
 	}
 }
+
+func TestLongMult(t *testing.T) {
+	n1, n2 := "2", "3"
+	res := LongMult(n1, n2)
+	exp := "6"
+
+	if res != exp {
+		t.Errorf("incorrect sum of %s and %s calculated: got %s, expected %s", n1, n2, res, exp)
+	}
+
+	n1, n2 = "612", "24"
+	res = LongMult(n1, n2)
+	exp = "14688"
+
+	if res != exp {
+		t.Errorf("incorrect sum of %s and %s calculated: got %s, expected %s", n1, n2, res, exp)
+	}
+
+	n1, n2 = "423", "211"
+	res = LongMult(n1, n2)
+	exp = "89253"
+
+	if res != exp {
+		t.Errorf("incorrect sum of %s and %s calculated: got %s, expected %s", n1, n2, res, exp)
+	}
+}
