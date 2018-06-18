@@ -76,6 +76,11 @@ func LongMult(n1, n2 string) string {
 			prod, carry = longMultDigit(lier[i], cand[j], carry)
 			partial = append([]byte{prod}, partial...)
 		}
+		// if the last long digit multiplication resulted in a carry, ensure it is added to the partial
+		if carry != byte('0') {
+			partial = append([]byte{carry}, partial...)
+			carry = byte('0') // reset the carry so it doesn't affect the next partial's first number
+		}
 		partials = append(partials, partial) // save the partial product for summing
 	}
 
