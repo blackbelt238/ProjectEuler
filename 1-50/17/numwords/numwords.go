@@ -4,6 +4,18 @@ import (
 	"strconv"
 )
 
+// Letters takes in the word representation of a number and returns the number of letters used
+func Letters(word string) int {
+	count := 0
+	for _, b := range word {
+		if b == rune(' ') || b == rune('-') {
+			continue
+		}
+		count++
+	}
+	return count
+}
+
 // Word returns the given number's word form
 func Word(n int) string {
 	word := ""
