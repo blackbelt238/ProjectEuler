@@ -25,6 +25,13 @@ func TestLetters(t *testing.T) {
 	if count != exp {
 		t.Errorf("%s has %d letters, but got %d", word, exp, count)
 	}
+
+	word = Word(127)
+	count = Letters(word)
+	exp = 24
+	if count != exp {
+		t.Errorf("%s has %d letters, but got %d", word, exp, count)
+	}
 }
 
 func TestWord(t *testing.T) {
