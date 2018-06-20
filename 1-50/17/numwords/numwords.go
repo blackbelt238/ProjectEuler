@@ -24,7 +24,7 @@ func Word(n int) string {
 	for len(nstr) > 0 {
 		if len(nstr) > 3 {
 			word += thousands(nstr[0])
-			nstr = nstr[1:]
+			nstr = "" // thousands will not work above 1000
 		} else if len(nstr) == 3 {
 			word += hundreds(nstr)
 			nstr = ""
@@ -41,7 +41,11 @@ func Word(n int) string {
 }
 
 func hundreds(s string) string {
-	return ones(s[0]) + " hundred and " + tens(s[1:])
+	word := ones(s[0]) + " hundred"
+	if s[1:] != "00" {
+		word += " and " + tens(s[1:])
+	}
+	return word
 }
 
 func ones(s byte) string {
@@ -68,7 +72,10 @@ func ones(s byte) string {
 }
 
 func tens(s string) string {
-	if s == "10" {
+	snum := ""
+	if s[0] == byte('0') {
+		return ones(s[1])
+	} else if s == "10" {
 		return "ten"
 	} else if s == "11" {
 		return "eleven"
@@ -78,28 +85,35 @@ func tens(s string) string {
 		return "thirteen"
 	} else if s == "15" {
 		return "fifteen"
+	} else if s == "18" {
+		return "eighteen"
 	} else if s[0] == byte('1') {
 		return ones(s[1]) + "teen"
 	} else if s[0] == byte('2') {
-		return "twenty-" + ones(s[1])
+		snum = "twenty"
 	} else if s[0] == byte('3') {
-		return "thirty-" + ones(s[1])
+		snum = "thirty"
 	} else if s[0] == byte('4') {
-		return "fourty-" + ones(s[1])
+		snum = "forty"
 	} else if s[0] == byte('5') {
-		return "fifty-" + ones(s[1])
+		snum = "fifty"
 	} else if s[0] == byte('6') {
-		return "sixty-" + ones(s[1])
+		snum = "sixty"
 	} else if s[0] == byte('7') {
-		return "seventy-" + ones(s[1])
+		snum = "seventy"
 	} else if s[0] == byte('8') {
-		return "eighty-" + ones(s[1])
+		snum = "eighty"
 	} else if s[0] == byte('9') {
-		return "ninety-" + ones(s[1])
+		snum = "ninety"
 	}
-	return ""
+
+	if s[1] != byte('0') {
+		snum += "-" + ones(s[1])
+	}
+
+	return snum
 }
 
 func thousands(s byte) string {
-	return string(ones(s)) + " thousand "
+	return string(ones(s)) + " thousand"
 }
