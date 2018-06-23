@@ -37,3 +37,11 @@ func TestCreateTriangleIntConversionError(t *testing.T) {
 		t.Errorf("should error on trying to convert a word to an int")
 	}
 }
+
+func TestMaxPathSum(t *testing.T) {
+	tri, _ := CreateTriangle("./../small.txt")
+	sum := tri.MaxPathSum()
+	if sum != 23 {
+		t.Errorf("incorrect sum: got %d but 23 expected", sum)
+	}
+}
