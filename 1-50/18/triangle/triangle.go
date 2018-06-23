@@ -41,3 +41,21 @@ func CreateTriangle(fname string) (Triangle, error) {
 
 	return t, nil
 }
+
+// MaxPathSum makes a path through the triangle using the largest nu
+func MaxPathSum(t Triangle) int {
+	sum := t[0][0] // initialize the sum at the only number in the first row
+	lgst := 0      // index of largest adjacent number for the current row
+
+	// go through all rows in the triangle and find the path
+	for row := 1; row < len(t); row++ {
+		// determine which adjacent number is the largest
+		if t[row][lgst] < t[row][lgst+1] {
+			lgst++
+		}
+
+		sum += t[row][lgst]
+	}
+
+	return sum
+}
