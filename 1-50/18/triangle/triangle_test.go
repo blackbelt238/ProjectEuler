@@ -6,7 +6,7 @@ import (
 
 func TestCreateTriangle(t *testing.T) {
 	tri, _ := CreateTriangle("./../small.txt")
-	exp := [][]int{
+	exp := Triangle{
 		{3},
 		{7, 4},
 		{2, 4, 6},
