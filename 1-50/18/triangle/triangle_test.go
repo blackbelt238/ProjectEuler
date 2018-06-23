@@ -1,6 +1,7 @@
 package triangle
 
 import (
+	"strings"
 	"testing"
 )
 
@@ -20,5 +21,19 @@ func TestCreateTriangle(t *testing.T) {
 				t.Errorf("unexpected element found: %d should be %d\n\tgot: %v\n\texp: %v", ele, expele, tri, exp)
 			}
 		}
+	}
+}
+
+func TestCreateTriangleNoFile(t *testing.T) {
+	tri, err := CreateTriangle("./../404.txt")
+	if tri != nil || !strings.Contains(err.Error(), "opening Triangle file") {
+		t.Errorf("should error on nonexistant file")
+	}
+}
+
+func TestCreateTriangleIntConversionError(t *testing.T) {
+	tri, err := CreateTriangle("./../bad.txt")
+	if tri != nil || !strings.Contains(err.Error(), "converting Triangle elements to int") {
+		t.Errorf("should error on trying to convert a word to an int")
 	}
 }
