@@ -42,20 +42,44 @@ func CreateTriangle(fname string) (Triangle, error) {
 	return t, nil
 }
 
-// MaxPathSum makes a path through the triangle using the largest nu
+// MaxPathSum looks 2 rows ahead to determine the max path
 func MaxPathSum(t Triangle) int {
 	sum := t[0][0] // initialize the sum at the only number in the first row
 	lgst := 0      // index of largest adjacent number for the current row
 
 	// go through all rows in the triangle and find the path
+	var llgst, rlgst int
 	for row := 1; row < len(t); row++ {
-		// determine which adjacent number is the largest
-		if t[row][lgst] < t[row][lgst+1] {
+		llgst, rlgst = largestLookaheadSums(t, row, lgst)
+
+		// pick which adjacent number to use based on the lookahead sums
+		if llgst < rlgst {
 			lgst++
 		}
-
 		sum += t[row][lgst]
 	}
 
 	return sum
+}
+
+func largestLookaheadSums(t Triangle, row int, lgst int) (int, int) {
+	llgst, rlgst := t[row][lgst], t[row][lgst+1] // begin the calculation with the 2 adjacent numbers on this row
+	// if this is the last row, don't look ahead
+	if row >= len(t)-1 {
+		return llgst, rlgst
+	}
+
+	// looking ahead to the next row, determine the largest possible left sum
+	llgst += t[row+1][lgst]
+	if llgst < t[row][lgst]+t[row+1][lgst+1] {
+		llgst = t[row][lgst] + t[row+1][lgst+1]
+	}
+
+	// looking ahead to the next row, determine the largest possible right sum
+	rlgst += t[row+1][lgst+1]
+	if rlgst < t[row][lgst+1]+t[row+1][lgst+2] {
+		rlgst = t[row][lgst+1] + t[row+1][lgst+2]
+	}
+
+	return llgst, rlgst
 }
