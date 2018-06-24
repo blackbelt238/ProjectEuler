@@ -44,4 +44,10 @@ func TestMaxPathSum(t *testing.T) {
 	if sum != 23 {
 		t.Errorf("incorrect sum: got %d but 23 expected", sum)
 	}
+
+	tri, _ = CreateTriangle("./../small2.txt")
+	sum = MaxPathSum(tri)
+	if sum != 27 {
+		t.Errorf("incorrect sum: got %d but 27 expected", sum)
+	}
 }
